@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Tutorials - Coding for Beginners</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS Variables for Our Palette --- */
+        :root {
+            --primary-green: #2ECC71; /* A fresh, vibrant green for primary accents */
+            --secondary-blue: #3498DB; /* A calming, complementary blue */
+            --accent-orange: #FF7F50; /* A warm, energetic accent color */
+            --light-bg: #F0F8FF; /* Very light, airy background */
+            --pure-white: #FFFFFF; /* For contrasts and key elements */
+            --dark-text: #2C3E50; /* Dark charcoal for main text */
+            --medium-text: #7F8C8D; /* Slightly lighter for paragraphs */
+            --soft-border: #E0E0E0; /* For subtle borders */
+            --header-dark: #2A5252; /* Darker green/teal for header background */
+            --hover-light: #F0F8FF;
+            --hover-dark: #2980B9;
+        }
+
+        /* --- General Body & Container Styling --- */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark-text);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        /* --- Header Styling --- */
+        header {
+            background-color: var(--header-dark); /* Darker green/teal for header */
+            color: var(--pure-white);
+            padding: 1.5em 0; /* More padding */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1000;
+        }
+
+            header .container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap; /* Allow wrapping for responsiveness */
+            }
+
+            header h1 {
+                margin: 0;
+                color: var(--pure-white);
+                font-size: 2.2em;
+                font-weight: 700;
+                letter-spacing: -0.5px;
+            }
+
+            header input[type="search"] {
+                padding: 10px 15px;
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                border-radius: 25px; /* Pill-shaped search bar */
+                background-color: rgba(255, 255, 255, 0.1);
+                color: var(--pure-white);
+                font-size: 1em;
+                width: 200px;
+                transition: all 0.3s ease;
+            }
+
+                header input[type="search"]::placeholder {
+                    color: rgba(255, 255, 255, 0.7);
+                }
+
+                header input[type="search"]:focus {
+                    background-color: var(--pure-white);
+                    color: var(--dark-text);
+                    box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.4);
+                    border-color: var(--primary-green);
+                }
+
+        /* --- Navigation Styling --- */
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+            nav ul li {
+                margin-left: 25px; /* More space between nav items */
+            }
+
+                nav ul li a {
+                    color: var(--pure-white);
+                    text-decoration: none;
+                    padding: 8px 15px;
+                    border-radius: 20px; /* Bubble-like navigation items */
+                    transition: background-color 0.3s ease, color 0.3s ease;
+                    font-weight: 500;
+                    font-size: 1em;
+                    display: block; /* For better padding/hover area */
+                }
+
+                    nav ul li a:hover {
+                        background-color: rgba(255, 255, 255, 0.2); /* Subtle hover background */
+                        color: var(--pure-white);
+                    }
+
+                    /* Active state for current page */
+                    nav ul li a.active {
+                        background-color: var(--primary-green); /* Active item stands out */
+                        color: var(--pure-white);
+                        font-weight: 600;
+                        box-shadow: 0 2px 8px rgba(46, 204, 113, 0.3);
+                    }
+
+        /* --- Main Content Styling --- */
+        main {
+            padding: 40px 0; /* More vertical padding */
+        }
+
+        section#video-tutorials-content {
+            background-color: var(--pure-white);
+            padding: 30px; /* More padding */
+            border-radius: 12px; /* Softer rounded corners */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); /* More prominent shadow */
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 2.5em; /* Larger main heading */
+            color: var(--primary-green); /* Primary color for main heading */
+            border-bottom: 3px solid var(--soft-border); /* Thicker border */
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            text-align: center; /* Center align main heading */
+        }
+
+        .intro-paragraph {
+            font-size: 1.15em;
+            color: var(--medium-text);
+            text-align: center;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Quick Links / Table of Contents */
+        .quick-links {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: var(--light-bg);
+            border-radius: 10px;
+            box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--soft-border);
+        }
+
+            .quick-links h3 {
+                font-size: 1.6em;
+                color: var(--dark-text);
+                margin-bottom: 20px;
+            }
+
+            .quick-links ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px; /* Space between link bubbles */
+            }
+
+                .quick-links ul li a {
+                    display: inline-block;
+                    background-color: var(--primary-green);
+                    color: var(--pure-white);
+                    text-decoration: none;
+                    padding: 10px 20px;
+                    border-radius: 25px; /* Bubble links */
+                    font-weight: 500;
+                    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+                    box-shadow: 0 2px 5px rgba(46, 204, 113, 0.3);
+                }
+
+                    .quick-links ul li a:hover {
+                        background-color: #27AE60; /* Darker green on hover */
+                        transform: translateY(-2px);
+                        box-shadow: 0 4px 10px rgba(46, 204, 113, 0.5);
+                    }
+
+        .video-category {
+            margin-bottom: 30px; /* More space between categories */
+            padding: 25px; /* More padding */
+            border: 1px solid var(--soft-border);
+            border-radius: 8px; /* Rounded corners for categories */
+            background-color: var(--light-bg);
+            box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.05); /* Subtle inner shadow */
+            scroll-margin-top: 100px; /* Offset for fixed header when scrolling to anchor */
+        }
+
+            .video-category h3 {
+                font-size: 1.8em; /* Larger category headings */
+                color: var(--secondary-blue); /* Secondary color for category headings */
+                border-bottom: 2px solid var(--soft-border);
+                padding-bottom: 10px;
+                margin-bottom: 20px;
+                text-align: left; /* Align category headings left */
+            }
+
+        .video-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Slightly larger min-width */
+            gap: 20px; /* More gap */
+        }
+
+        .video-item {
+            background-color: var(--pure-white);
+            border: 1px solid var(--soft-border);
+            padding: 20px; /* More padding */
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow for items */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hover effect */
+            display: flex; /* Flexbox for centering content vertically */
+            align-items: center;
+            justify-content: center;
+            min-height: 120px; /* Ensure consistent height for items */
+            font-weight: 500;
+            color: var(--dark-text);
+            font-size: 1.05em;
+            cursor: pointer; /* Indicate clickability */
+        }
+
+            .video-item:hover {
+                transform: translateY(-5px); /* Lift effect */
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            }
+
+        /* --- Footer Styling --- */
+        footer {
+            background-color: var(--header-dark); /* Match header background */
+            color: var(--pure-white);
+            text-align: center;
+            padding: 1.5em 0;
+            width: 100%;
+            margin-top: 60px; /* Space above footer */
+        }
+
+        .motivational-message {
+            margin-top: 15px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.8); /* Lighter color for message */
+            font-size: 0.95em;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            header .container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            header h1 {
+                margin-bottom: 15px;
+                font-size: 2em;
+            }
+
+            header input[type="search"] {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                width: 100%;
+            }
+
+                nav ul li {
+                    margin: 5px 10px;
+                }
+
+            h2 {
+                font-size: 2em;
+            }
+
+            .intro-paragraph {
+                font-size: 1em;
+            }
+
+            .video-category h3 {
+                font-size: 1.6em;
+            }
+
+            .video-list {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+
+            .quick-links ul {
+                gap: 10px;
+            }
+
+                .quick-links ul li a {
+                    padding: 8px 15px;
+                    font-size: 0.95em;
+                }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            nav ul li a {
+                padding: 6px 12px;
+                font-size: 0.9em;
+            }
+
+            h2 {
+                font-size: 1.8em;
+                margin-bottom: 20px;
+            }
+
+            .intro-paragraph {
+                font-size: 0.95em;
+                margin-bottom: 30px;
+            }
+
+            .video-category {
+                padding: 15px;
+            }
+
+                .video-category h3 {
+                    font-size: 1.4em;
+                    margin-bottom: 15px;
+                }
+
+            .video-list {
+                grid-template-columns: 1fr;
+            }
+
+            .video-item {
+                padding: 15px;
+                min-height: 100px;
+                font-size: 0.9em;
+            }
+
+            footer {
+                padding: 1em 0;
+            }
+
+            .quick-links h3 {
+                font-size: 1.4em;
+            }
+
+            .quick-links ul li a {
+                padding: 7px 12px;
+                font-size: 0.9em;
+            }
+        }
+
+        /* --- Accessibility --- */
+        a:focus,
+        button:focus,
+        input[type="search"]:focus {
+            outline: 3px solid var(--accent-orange); /* Clearer focus indicator */
+            outline-offset: 3px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Coding for Beginners at Rosebank College</h1>
+            <input type="search" placeholder="Search tutorials...">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="lecture-slides.html">Lecture Slides</a></li>
+                    <li><a href="video-tutorials.html" class="active">Video Tutorials</a></li>
+                    <li><a href="discussion-forum.html">Discussion Forum</a></li>
+                    <li><a href="resource-links.html">Resource Links</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="video-tutorials-content">
+            <h2>Unlock Your Coding Skills with Video Tutorials</h2>
+            <p class="intro-paragraph">Dive into our comprehensive collection of video tutorials, meticulously organized to help you grasp fundamental coding concepts and advance your programming journey. Learn at your own pace!</p>
+
+            <section class="quick-links">
+                <h3>Quick Links to Categories</h3>
+                <ul>
+                    <li><a href="#html-fundamentals">HTML Fundamentals</a></li>
+                    <li><a href="#css-styling">CSS Styling & Layout</a></li>
+                    <li><a href="#javascript-interaction">JavaScript Interaction</a></li>
+                    <li><a href="#java-programming">Java Programming</a></li>
+                    <li><a href="#python-fundamentals">Python Fundamentals</a></li>
+                </ul>
+            </section>
+
+            <div class="video-category" id="html-fundamentals">
+                <h3>HTML Fundamentals</h3>
+                <div class="video-list">
+                    <div class="video-item">HTML Basics: Understanding Structure</div>
+                    <div class="video-item">Essential HTML Tags & Attributes</div>
+                    <div class="video-item">Working with Images, Links & Lists</div>
+                    <div class="video-item">Forms & Input Elements</div>
+                </div>
+            </div>
+
+            <div class="video-category" id="css-styling">
+                <h3>CSS Styling & Layout</h3>
+                <div class="video-list">
+                    <div class="video-item">Introduction to CSS: The Power of Styling</div>
+                    <div class="video-item">CSS Selectors, Properties & Values</div>
+                    <div class="video-item">Understanding the CSS Box Model</div>
+                    <div class="video-item">Flexbox for Responsive Layouts</div>
+                </div>
+            </div>
+
+            <div class="video-category" id="javascript-interaction">
+                <h3>JavaScript Interaction</h3>
+                <div class="video-list">
+                    <div class="video-item">Getting Started with JavaScript: Your First Script</div>
+                    <div class="video-item">Variables, Data Types & Operators</div>
+                    <div class="video-item">Control Flow: Conditionals & Loops</div>
+                    <div class="video-item">DOM Manipulation & Event Handling</div>
+                </div>
+            </div>
+
+            <div class="video-category" id="java-programming">
+                <h3>Java Programming for Beginners</h3>
+                <div class="video-list">
+                    <div class="video-item">Setting Up Your Java Development Environment</div>
+                    <div class="video-item">Java Basic Syntax & Data Types</div>
+                    <div class="video-item">Understanding Classes, Objects & Methods</div>
+                    <div class="video-item">Introduction to Object-Oriented Programming (OOP)</div>
+                </div>
+            </div>
+            <div class="video-category" id="python-fundamentals">
+                <h3>Python Fundamentals</h3>
+                <div class="video-list">
+                    <div class="video-item">Introduction to Python: Your First Program</div>
+                    <div class="video-item">Python Variables, Data Types & Operators</div>
+                    <div class="video-item">Control Flow in Python: if/else & Loops</div>
+                    <div class="video-item">Functions & Modules in Python</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Rosebank College - Coding for Beginners. All rights reserved.</p>
+            <div class="motivational-message"></div>
+        </div>
+    </footer>
+
+    <script>
+        const motivationalMessageElement = document.querySelector('.motivational-message');
+        if (motivationalMessageElement) {
+            const motivationalMessages = [
+                "Visual learning can be very effective. Keep going!",
+                "Break down complex topics with our step-by-step videos.",
+                "Practice makes perfect! Apply what you learn.",
+                "Every line of code is a step forward. You've got this!"
+            ];
+            const randomIndex = Math.floor(Math.random() * motivationalMessages.length);
+            motivationalMessageElement.textContent = motivationalMessages[randomIndex];
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

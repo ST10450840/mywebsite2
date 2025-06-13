@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Links - Coding for Beginners</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS Variables for Our Palette (Consistent Across Pages) --- */
+        :root {
+            --primary-green: #2ECC71;      /* A fresh, vibrant green for primary accents */
+            --secondary-blue: #3498DB;     /* A calming, complementary blue */
+            --accent-orange: #FF7F50;      /* A warm, energetic accent color */
+            --light-bg: #F0F8FF;           /* Very light, airy background */
+            --pure-white: #FFFFFF;         /* For contrasts and key elements */
+            --dark-text: #2C3E50;          /* Dark charcoal for main text */
+            --medium-text: #7F8C8D;        /* Slightly lighter for paragraphs */
+            --soft-border: #E0E0E0;        /* For subtle borders */
+            --header-dark: #2A5252;        /* Darker green/teal for header background */
+            --hover-light: #F0F8FF;
+            --hover-dark: #2980B9;
+        }
+
+        /* --- General Body & Container Styling --- */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark-text);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        /* --- Header Styling --- */
+        header {
+            background-color: var(--header-dark);
+            color: var(--pure-white);
+            padding: 1.5em 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        header h1 {
+            margin: 0;
+            color: var(--pure-white);
+            font-size: 2.2em;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        header input[type="search"] {
+            padding: 10px 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px; /* Pill-shaped search bar */
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--pure-white);
+            font-size: 1em;
+            width: 200px;
+            transition: all 0.3s ease;
+        }
+
+        header input[type="search"]::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        header input[type="search"]:focus {
+            background-color: var(--pure-white);
+            color: var(--dark-text);
+            box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.4);
+            border-color: var(--primary-green);
+        }
+
+        /* --- Navigation Styling --- */
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: var(--pure-white);
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 20px; /* Bubble-like navigation items */
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-weight: 500;
+            font-size: 1em;
+            display: block;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: var(--pure-white);
+        }
+
+        /* Active state for current page */
+        nav ul li a.active {
+            background-color: var(--primary-green);
+            color: var(--pure-white);
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(46, 204, 113, 0.3);
+        }
+        
+        /* --- Main Content Styling --- */
+        main {
+            padding: 40px 0;
+        }
+
+        section#resource-links-content {
+            background-color: var(--pure-white);
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            text-align: center; /* Center the heading and description */
+        }
+
+        h2 { /* General H2 styling for consistency */
+            font-size: 2.5em;
+            color: var(--primary-green);
+            border-bottom: 3px solid var(--soft-border);
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        section#resource-links-content > p { /* Specific for the intro paragraph */
+            font-size: 1.1em;
+            color: var(--medium-text);
+            margin-bottom: 40px;
+        }
+
+        .resource-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjusted grid columns */
+            gap: 30px; /* Space between resource categories */
+            text-align: left; /* Align text within category boxes */
+            margin-top: 40px;
+        }
+
+        .resource-category {
+            padding: 30px;
+            border: 1px solid var(--soft-border);
+            border-radius: 12px;
+            background-color: var(--light-bg);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .resource-category:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .resource-category h3 {
+            margin-top: 0;
+            color: var(--secondary-blue);
+            font-size: 1.8em;
+            border-bottom: 2px solid var(--soft-border);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .resource-category ul {
+            list-style: none; /* Remove default bullets */
+            padding: 0;
+            margin: 0;
+        }
+
+        .resource-category ul li {
+            margin-bottom: 15px;
+            display: flex; /* For icon alignment */
+            align-items: flex-start; /* Align text from top if it wraps */
+        }
+
+        .resource-category ul li a {
+            color: var(--dark-text);
+            text-decoration: none;
+            font-size: 1.05em;
+            transition: color 0.3s ease, transform 0.2s ease;
+            flex-grow: 1; /* Allow link text to take available space */
+        }
+
+        .resource-category ul li a:hover {
+            color: var(--primary-green);
+            transform: translateX(5px); /* Slight slide effect on hover */
+            text-decoration: underline; /* Add underline on hover for links */
+        }
+
+        .resource-category ul li a::before { /* Icon for external link */
+            content: '🔗'; /* Link emoji or replace with an SVG icon */
+            margin-right: 10px;
+            font-size: 0.9em;
+            flex-shrink: 0; /* Prevent icon from shrinking */
+        }
+
+        /* --- Footer Styling --- */
+        footer {
+            background-color: var(--header-dark);
+            color: var(--pure-white);
+            text-align: center;
+            padding: 1.5em 0;
+            width: 100%;
+            margin-top: 60px; /* Space above footer */
+        }
+
+        .motivational-message {
+            margin-top: 15px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95em;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            header .container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            header h1 {
+                margin-bottom: 15px;
+                font-size: 2em;
+            }
+            header input[type="search"] {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                width: 100%;
+            }
+            nav ul li {
+                margin: 5px 10px;
+            }
+            h2 {
+                font-size: 2em;
+            }
+            .resource-list {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            header h1 {
+                font-size: 1.8em;
+            }
+            nav ul li a {
+                padding: 6px 12px;
+                font-size: 0.9em;
+            }
+            h2 {
+                font-size: 1.8em;
+                margin-bottom: 20px;
+            }
+            section#resource-links-content {
+                padding: 20px;
+            }
+            section#resource-links-content > p {
+                font-size: 1em;
+                margin-bottom: 30px;
+            }
+            .resource-list {
+                grid-template-columns: 1fr;
+            }
+            .resource-category {
+                padding: 20px;
+            }
+            .resource-category h3 {
+                font-size: 1.6em;
+            }
+            .resource-category ul li a {
+                font-size: 1em;
+            }
+            footer {
+                padding: 1em 0;
+            }
+        }
+
+        /* --- Accessibility --- */
+        a:focus,
+        button:focus,
+        input:focus,
+        textarea:focus {
+            outline: 3px solid var(--accent-orange);
+            outline-offset: 3px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Coding for Beginners at Rosebank College</h1>
+            <input type="search" placeholder="Search...">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="lecture-slides.html">Lecture Slides</a></li>
+                    <li><a href="video-tutorials.html">Video Tutorials</a></li>
+                    <li><a href="discussion-forum.html">Discussion Forum</a></li>
+                    <li><a href="resource-links.html" class="active">Resource Links</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="resource-links-content">
+            <h2>Curated Resources to Boost Your Learning</h2>
+            <p>We've hand-picked a selection of external websites, documentation, and tools to help you deepen your understanding and expand your coding skills beyond our core lessons.</p>
+            <div class="resource-list">
+                <div class="resource-category">
+                    <h3>HTML & Web Structure</h3>
+                    <ul>
+                        <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank">MDN Web Docs - HTML: Comprehensive HTML reference.</a></li>
+                        <li><a href="https://html.com/" target="_blank">HTML.com: Beginner-friendly guides and tutorials.</a></li>
+                        <li><a href="https://www.w3schools.com/html/" target="_blank">W3Schools HTML Tutorial: Interactive examples and exercises.</a></li>
+                        <li><a href="https://validator.w3.org/" target="_blank">W3C Markup Validation Service: Check your HTML for errors.</a></li>
+                    </ul>
+                </div>
+                <div class="resource-category">
+                    <h3>CSS & Web Styling</h3>
+                    <ul>
+                        <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank">MDN Web Docs - CSS: In-depth CSS documentation.</a></li>
+                        <li><a href="https://css-tricks.com/" target="_blank">CSS-Tricks: Articles, guides, and snippets for all things CSS.</a></li>
+                        <li><a href="https://www.w3schools.com/css/" target="_blank">W3Schools CSS Tutorial: Practical CSS examples and references.</a></li>
+                        <li><a href="https://flexboxfroggy.com/" target="_blank">Flexbox Froggy: A game to learn CSS Flexbox.</a></li>
+                        <li><a href="https://cssgridgarden.com/" target="_blank">CSS Grid Garden: A game to learn CSS Grid.</a></li>
+                    </ul>
+                </div>
+                <div class="resource-category">
+                    <h3>JavaScript & Interactivity</h3>
+                    <ul>
+                        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">MDN Web Docs - JavaScript: Core JavaScript language reference.</a></li>
+                        <li><a href="https://javascript.info/" target="_blank">The Modern JavaScript Tutorial: A thorough, modern JS guide.</a></li>
+                        <li><a href="https://www.w3schools.com/js/" target="_blank">W3Schools JavaScript Tutorial: Interactive examples.</a></li>
+                        <li><a href="https://eloquentjavascript.net/" target="_blank">Eloquent JavaScript: A free online book covering JS deeply.</a></li>
+                    </ul>
+                </div>
+                <div class="resource-category">
+                    <h3>Python & Data Science</h3>
+                    <ul>
+                        <li><a href="https://docs.python.org/3/" target="_blank">Python Official Documentation: Comprehensive reference.</a></li>
+                        <li><a href="https://www.w3schools.com/python/" target="_blank">W3Schools Python Tutorial: Easy-to-understand basics.</a></li>
+                        <li><a href="https://realpython.com/" target="_blank">Real Python: In-depth tutorials and articles.</a></li>
+                        <li><a href="https://automatetheboringstuff.com/" target="_blank">Automate the Boring Stuff with Python: Practical applications for beginners.</a></li>
+                    </ul>
+                </div>
+                <div class="resource-category">
+                    <h3>Java & Object-Oriented Programming</h3>
+                    <ul>
+                        <li><a href="https://docs.oracle.com/en/java/" target="_blank">Oracle Java Documentation: Official Java SE documentation.</a></li>
+                        <li><a href="https://www.w3schools.com/java/" target="_blank">W3Schools Java Tutorial: Quick start and examples.</a></li>
+                        <li><a href="https://www.tutorialspoint.com/java/" target="_blank">TutorialsPoint Java: Broad range of Java topics.</a></li>
+                        <li><a href="https://www.javatpoint.com/" target="_blank">JavaTpoint: Detailed Java tutorials with examples.</a></li>
+                    </ul>
+                </div>
+                <div class="resource-category">
+                    <h3>General Tools & Concepts</h3>
+                    <ul>
+                        <li><a href="https://stackoverflow.com/" target="_blank">Stack Overflow: The go-to Q&A site for developers.</a></li>
+                        <li><a href="https://github.com/" target="_blank">GitHub: Learn version control and collaborate on projects.</a></li>
+                        <li><a href="https://www.freecodecamp.org/" target="_blank">freeCodeCamp: Interactive coding lessons and certifications.</a></li>
+                        <li><a href="https://www.codewars.com/" target="_blank">Codewars: Improve your coding skills through challenges.</a></li>
+                        <li><a href="https://vscode.dev/" target="_blank">VS Code Online: A lightweight online code editor.</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Rosebank College - Coding for Beginners. All rights reserved.</p>
+            <div class="motivational-message"></div>
+        </div>
+    </footer>
+
+    <script>
+        const motivationalMessageElement = document.querySelector('.motivational-message');
+        if (motivationalMessageElement) {
+            const motivationalMessages = [
+                "The more you learn, the more you grow. Keep exploring!",
+                "Great resources empower great coders. Utilize them!",
+                "Every link is a door to new knowledge.",
+                "Expand your horizons. The coding world is vast!",
+                "Curiosity is the best teacher. Follow these links!"
+            ];
+            const randomIndex = Math.floor(Math.random() * motivationalMessages.length);
+            motivationalMessageElement.textContent = motivationalMessages[randomIndex];
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discussion Forum - Coding for Beginners</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS Variables for Our Palette (Consistent Across Pages) --- */
+        :root {
+            --primary-green: #2ECC71;      /* A fresh, vibrant green for primary accents */
+            --secondary-blue: #3498DB;     /* A calming, complementary blue */
+            --accent-orange: #FF7F50;      /* A warm, energetic accent color */
+            --light-bg: #F0F8FF;           /* Very light, airy background */
+            --pure-white: #FFFFFF;         /* For contrasts and key elements */
+            --dark-text: #2C3E50;          /* Dark charcoal for main text */
+            --medium-text: #7F8C8D;        /* Slightly lighter for paragraphs */
+            --soft-border: #E0E0E0;        /* For subtle borders */
+            --header-dark: #2A5252;        /* Darker green/teal for header background */
+            --hover-light: #F0F8FF;
+            --hover-dark: #2980B9;
+        }
+
+        /* --- General Body & Container Styling --- */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark-text);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        /* --- Header Styling --- */
+        header {
+            background-color: var(--header-dark);
+            color: var(--pure-white);
+            padding: 1.5em 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        header h1 {
+            margin: 0;
+            color: var(--pure-white);
+            font-size: 2.2em;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        header input[type="search"] {
+            padding: 10px 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--pure-white);
+            font-size: 1em;
+            width: 200px;
+            transition: all 0.3s ease;
+        }
+
+        header input[type="search"]::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        header input[type="search"]:focus {
+            background-color: var(--pure-white);
+            color: var(--dark-text);
+            box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.4);
+            border-color: var(--primary-green);
+        }
+
+        /* --- Navigation Styling --- */
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: var(--pure-white);
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-weight: 500;
+            font-size: 1em;
+            display: block;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: var(--pure-white);
+        }
+
+        /* Active state for current page */
+        nav ul li a.active {
+            background-color: var(--primary-green);
+            color: var(--pure-white);
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(46, 204, 113, 0.3);
+        }
+        
+        /* --- Main Content Styling --- */
+        main {
+            padding: 40px 0;
+        }
+
+        section#discussion-forum-content {
+            background-color: var(--pure-white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            color: var(--primary-green);
+            border-bottom: 3px solid var(--soft-border);
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .intro-paragraph {
+            font-size: 1.15em;
+            color: var(--medium-text);
+            text-align: center;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .forum-section { /* Renamed from .forum to avoid confusion with overall structure */
+            background-color: var(--light-bg); /* Use light-bg for section background */
+            padding: 25px;
+            border: 1px solid var(--soft-border);
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .forum-section h3 {
+            font-size: 1.8em;
+            color: var(--secondary-blue);
+            border-bottom: 2px solid var(--soft-border);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        /* --- New Question Form Styling --- */
+        form#new-question-form {
+            background-color: var(--pure-white); /* White background for the form itself */
+            padding: 20px;
+            border: 1px solid var(--soft-border);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* More space between form elements */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow for form */
+        }
+
+        form#new-question-form input[type="text"],
+        form#new-question-form textarea {
+            padding: 12px 15px; /* More padding */
+            border: 1px solid var(--soft-border);
+            border-radius: 6px; /* Slightly more rounded inputs */
+            font-size: 1em;
+            color: var(--dark-text);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        form#new-question-form input[type="text"]:focus,
+        form#new-question-form textarea:focus {
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
+            outline: none; /* Remove default outline */
+        }
+
+        form#new-question-form textarea {
+            min-height: 100px; /* Taller textarea */
+            resize: vertical; /* Allow vertical resizing */
+        }
+
+        form#new-question-form button[type="submit"] {
+            background-color: var(--primary-green);
+            color: var(--pure-white);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px; /* Bubble-like button */
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.05em;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            align-self: flex-start; /* Align button to the left */
+            box-shadow: 0 4px 10px rgba(46, 204, 113, 0.4);
+        }
+
+        form#new-question-form button[type="submit"]:hover {
+            background-color: #27AE60; /* Darker green on hover */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(46, 204, 113, 0.6);
+        }
+
+        /* --- Forum Posts Styling --- */
+        .forum-posts .post {
+            background-color: var(--pure-white);
+            border: 1px solid var(--soft-border);
+            padding: 20px;
+            margin-bottom: 20px; /* More space between posts */
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .forum-posts .post:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .forum-posts h4 {
+            font-size: 1.6em;
+            color: var(--dark-text);
+            margin-bottom: 8px;
+        }
+
+        .forum-posts p.meta {
+            color: var(--medium-text);
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .forum-posts .replies {
+            margin-top: 20px;
+            padding-left: 20px; /* More padding for replies */
+            border-left: 3px solid var(--soft-border); /* Thicker, softer border */
+        }
+
+        .forum-posts .replies .reply {
+            background-color: var(--light-bg); /* Use light-bg for replies */
+            padding: 12px;
+            margin-bottom: 10px; /* More space between replies */
+            border-radius: 6px;
+            font-size: 0.95em;
+            color: var(--dark-text);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03); /* Subtle inner shadow */
+        }
+
+        .forum-posts .reply-button {
+            background-color: var(--secondary-blue); /* Secondary blue for reply button */
+            color: var(--pure-white);
+            border: none;
+            padding: 8px 18px;
+            border-radius: 20px; /* Bubble-like button */
+            cursor: pointer;
+            font-size: 0.95em;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            margin-top: 10px; /* Space above button */
+            box-shadow: 0 2px 5px rgba(52, 152, 219, 0.3);
+        }
+
+        .forum-posts .reply-button:hover {
+            background-color: #2980B9; /* Darker blue on hover */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.5);
+        }
+
+        /* --- Footer Styling --- */
+        footer {
+            background-color: var(--header-dark);
+            color: var(--pure-white);
+            text-align: center;
+            padding: 1.5em 0;
+            width: 100%;
+            margin-top: 60px;
+        }
+
+        .motivational-message {
+            margin-top: 15px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95em;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            header .container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            header h1 {
+                margin-bottom: 15px;
+                font-size: 2em;
+            }
+            header input[type="search"] {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                width: 100%;
+            }
+            nav ul li {
+                margin: 5px 10px;
+            }
+            h2 {
+                font-size: 2em;
+            }
+            .intro-paragraph {
+                font-size: 1em;
+            }
+            .forum-section h3 {
+                font-size: 1.6em;
+            }
+            form#new-question-form button[type="submit"] {
+                align-self: stretch; /* Button stretches to full width */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            header h1 {
+                font-size: 1.8em;
+            }
+            nav ul li a {
+                padding: 6px 12px;
+                font-size: 0.9em;
+            }
+            h2 {
+                font-size: 1.8em;
+                margin-bottom: 20px;
+            }
+            .intro-paragraph {
+                font-size: 0.95em;
+                margin-bottom: 30px;
+            }
+            .forum-section {
+                padding: 15px;
+            }
+            .forum-section h3 {
+                font-size: 1.4em;
+                margin-bottom: 15px;
+            }
+            form#new-question-form {
+                padding: 15px;
+            }
+            form#new-question-form input[type="text"],
+            form#new-question-form textarea,
+            form#new-question-form button[type="submit"] {
+                padding: 10px 12px;
+                font-size: 0.95em;
+            }
+            .forum-posts .post {
+                padding: 15px;
+            }
+            .forum-posts h4 {
+                font-size: 1.4em;
+            }
+            .forum-posts .replies {
+                padding-left: 15px;
+            }
+            .forum-posts .replies .reply {
+                padding: 10px;
+                font-size: 0.9em;
+            }
+            .forum-posts .reply-button {
+                padding: 6px 14px;
+                font-size: 0.9em;
+            }
+            footer {
+                padding: 1em 0;
+            }
+        }
+
+        /* --- Accessibility --- */
+        a:focus,
+        button:focus,
+        input:focus,
+        textarea:focus {
+            outline: 3px solid var(--accent-orange);
+            outline-offset: 3px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Coding for Beginners at Rosebank College</h1>
+            <input type="search" placeholder="Search forum...">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="lecture-slides.html">Lecture Slides</a></li>
+                    <li><a href="video-tutorials.html">Video Tutorials</a></li>
+                    <li><a href="discussion-forum.html" class="active">Discussion Forum</a></li>
+                    <li><a href="resource-links.html">Resource Links</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="discussion-forum-content">
+            <h2>Engage and Learn: The Discussion Forum</h2>
+            <p class="intro-paragraph">Connect with fellow students, ask questions, share your coding insights, and get help from our community. This is your space to grow together!</p>
+
+            <div class="forum-section">
+                <h3>Start a New Discussion Topic</h3>
+                <form id="new-question-form">
+                    <input type="text" placeholder="Subject of your question/topic" required aria-label="Subject">
+                    <textarea placeholder="Type your question or discussion topic here..." required aria-label="Your Question/Topic"></textarea>
+                    <button type="submit">Post New Topic</button>
+                </form>
+            </div>
+
+            <div class="forum-section">
+                <h3>Latest Discussions</h3>
+                <div class="forum-posts">
+                    <div class="post">
+                        <h4>Understanding the JavaScript 'this' Keyword</h4>
+                        <p class="meta">Posted by User A on June 10, 2025 at 10:30 AM</p>
+                        <p>I'm really struggling to understand how the 'this' keyword behaves in different JavaScript contexts (e.g., arrow functions vs. regular functions, strict mode). Can anyone provide a clear explanation or examples?</p>
+                        <div class="replies">
+                            <div class="reply">
+                                <p>User B replied on June 10, 2025 at 11:00 AM: The 'this' keyword often depends on how the function is called. For arrow functions, 'this' is lexically scoped...</p>
+                            </div>
+                            <div class="reply">
+                                <p>User C replied on June 10, 2025 at 11:45 AM: Great question! Think of 'this' as the object that owns the currently executing code. It's tricky with binding rules...</p>
+                            </div>
+                        </div>
+                        <button class="reply-button">Reply to this Topic</button>
+                    </div>
+
+                    <div class="post">
+                        <h4>Best Practices for Naming Variables in Python</h4>
+                        <p class="meta">Posted by BeginnerCoder on June 09, 2025 at 03:15 PM</p>
+                        <p>What are the widely accepted best practices for naming variables and functions in Python? Should I use snake_case, camelCase, or something else?</p>
+                        <div class="replies">
+                            <div class="reply">
+                                <p>PythonGuru replied on June 09, 2025 at 03:45 PM: Python's PEP 8 style guide strongly recommends snake_case for variable and function names...</p>
+                            </div>
+                        </div>
+                        <button class="reply-button">Reply to this Topic</button>
+                    </div>
+
+                    <div class="post">
+                        <h4>Getting Started with Git & GitHub</h4>
+                        <p class="meta">Posted by NewDev on June 08, 2025 at 09:00 AM</p>
+                        <p>I'm completely new to version control. Where should I start with Git and GitHub for my coding projects?</p>
+                        <div class="replies">
+                             <div class="reply">
+                                <p>VersionControlMaster replied on June 08, 2025 at 10:10 AM: Start by learning basic Git commands like git add, git commit, git push. GitHub provides great tutorials...</p>
+                            </div>
+                        </div>
+                        <button class="reply-button">Reply to this Topic</button>
+                    </div>
+
+                    </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Rosebank College - Coding for Beginners. All rights reserved.</p>
+            <div class="motivational-message"></div>
+        </div>
+    </footer>
+
+    <script>
+        const newQuestionForm = document.getElementById('new-question-form');
+        const forumPostsContainer = document.querySelector('.forum-posts');
+
+        if (newQuestionForm && forumPostsContainer) {
+            newQuestionForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent actual form submission
+
+                const subjectInput = this.querySelector('input[type="text"]');
+                const questionTextarea = this.querySelector('textarea');
+
+                const subject = subjectInput.value.trim();
+                const question = questionTextarea.value.trim();
+
+                if (subject && question) {
+                    const newPost = document.createElement('div');
+                    newPost.classList.add('post');
+
+                    const now = new Date();
+                    const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+                    const formattedDate = now.toLocaleDateString('en-US', options);
+
+                    newPost.innerHTML = `
+                        <h4>${subject}</h4>
+                        <p class="meta">Posted by You on ${formattedDate}</p>
+                        <p>${question}</p>
+                        <div class="replies"></div>
+                        <button class="reply-button">Reply to this Topic</button>
+                    `;
+
+                    forumPostsContainer.prepend(newPost); // Add new post to the top
+
+                    // Clear the form
+                    subjectInput.value = '';
+                    questionTextarea.value = '';
+
+                    alert('Your topic has been posted!');
+                } else {
+                    alert('Please fill out both the subject and your question.');
+                }
+            });
+        }
+
+        const motivationalMessageElement = document.querySelector('.motivational-message');
+        if (motivationalMessageElement) {
+            const motivationalMessages = [
+                "Collaboration is key to learning. Share your thoughts!",
+                "Don't hesitate to ask for help; someone else might have the same question!",
+                "Every question is a step towards deeper understanding.",
+                "Your insights can help others. Participate actively!"
+            ];
+            const randomIndex = Math.floor(Math.random() * motivationalMessages.length);
+            motivationalMessageElement.textContent = motivationalMessages[randomIndex];
+        }
+
+        // Basic reply button functionality (can be expanded)
+        document.querySelectorAll('.reply-button').forEach(button => {
+            button.addEventListener('click', function() {
+                alert('Reply functionality not fully implemented. You would open a reply form here.');
+            });
+        });
+    </script>
+</body>
+</html>

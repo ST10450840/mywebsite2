@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding for Beginners at Rosebank College</title>
+    <!-- Google Fonts for a modern, inviting look -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS Variables for Our Palette (Consistent Across Pages) --- */
+        :root {
+            --primary-green: #2ECC71;      /* A fresh, vibrant green for primary accents */
+            --secondary-blue: #3498DB;     /* A calming, complementary blue */
+            --accent-orange: #FF7F50;      /* A warm, energetic accent color */
+            --light-bg: #F0F8FF;           /* Very light, airy background */
+            --pure-white: #FFFFFF;         /* For contrasts and key elements */
+            --dark-text: #2C3E50;          /* Dark charcoal for main text */
+            --medium-text: #7F8C8D;        /* Slightly lighter for paragraphs */
+            --soft-border: #E0E0E0;        /* For subtle borders */
+            --header-dark: #2A5252;        /* Darker green/teal for header background */
+            --hover-light: #F0F8FF;
+            --hover-dark: #2980B9;
+        }
+
+        /* --- General Body & Container Styling --- */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark-text);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        /* --- Header Styling --- */
+        header {
+            background-color: var(--header-dark);
+            color: var(--pure-white);
+            padding: 1.5em 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        header h1 {
+            margin: 0;
+            color: var(--pure-white);
+            font-size: 2.2em;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        header input[type="search"] {
+            padding: 10px 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px; /* Pill-shaped search bar */
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--pure-white);
+            font-size: 1em;
+            width: 200px;
+            transition: all 0.3s ease;
+        }
+
+        header input[type="search"]::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        header input[type="search"]:focus {
+            background-color: var(--pure-white);
+            color: var(--dark-text);
+            box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.4);
+            border-color: var(--primary-green);
+        }
+
+        /* --- Navigation Styling --- */
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: var(--pure-white);
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 20px; /* Bubble-like navigation items */
+            transition: background-color 0.3s ease, color 0.3s ease;
+            font-weight: 500;
+            font-size: 1em;
+            display: block;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: var(--pure-white);
+        }
+
+        /* Active state for current page */
+        nav ul li a.active {
+            background-color: var(--primary-green);
+            color: var(--pure-white);
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(46, 204, 113, 0.3);
+        }
+        
+        /* --- Main Content Styling --- */
+        main {
+            padding: 40px 0;
+        }
+
+        section { /* General section styling for consistency */
+            background-color: var(--pure-white);
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        h2 { /* General H2 styling for consistency */
+            font-size: 2.5em;
+            color: var(--primary-green);
+            border-bottom: 3px solid var(--soft-border);
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* --- Hero Section Specifics --- */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-blue) 100%); /* Vibrant gradient */
+            color: var(--pure-white);
+            padding: 80px 40px; /* More padding */
+            text-align: center;
+            border-radius: 15px; /* Softer radius */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* More prominent shadow */
+            margin-bottom: 40px; /* More space below hero */
+        }
+
+        .hero h2 {
+            color: var(--pure-white); /* White heading on gradient */
+            font-size: 3.8em; /* Larger, more impactful */
+            margin-bottom: 20px;
+            border-bottom: none; /* No border for hero heading */
+        }
+
+        .hero p {
+            font-size: 1.4em; /* Larger, more readable */
+            line-height: 1.6;
+            margin-bottom: 30px; /* Space before button */
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            color: rgba(255, 255, 255, 0.9); /* Slightly transparent white for sub-text */
+        }
+
+        .hero .button {
+            display: inline-block;
+            background-color: var(--accent-orange); /* Vibrant accent for CTA */
+            color: var(--pure-white);
+            padding: 18px 40px; /* Larger button */
+            text-decoration: none;
+            border-radius: 40px; /* Very rounded, bubble-like */
+            font-weight: 700;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 15px rgba(255, 127, 80, 0.5); /* Shadow matching accent */
+        }
+
+        .hero .button:hover {
+            background-color: #E66A3D; /* Darker orange on hover */
+            transform: translateY(-3px); /* Lift effect */
+            box-shadow: 0 8px 20px rgba(255, 127, 80, 0.7);
+        }
+
+        /* --- Features Section Specifics --- */
+        .features {
+            padding: 40px; /* More padding */
+            text-align: center; /* Center align section heading */
+            margin-bottom: 60px; /* More space below features */
+        }
+
+        .features h2 {
+            margin-bottom: 40px; /* More space below heading */
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Slightly larger min-width */
+            gap: 30px; /* More space between items */
+        }
+
+        .feature-item {
+            padding: 30px; /* More padding */
+            border: 1px solid var(--soft-border);
+            border-radius: 12px; /* Softer rounded corners */
+            text-align: center;
+            background-color: var(--light-bg); /* Lighter background for feature items */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Lift on hover */
+        }
+
+        .feature-item:hover {
+            transform: translateY(-8px); /* More pronounced lift */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-item h3 {
+            color: var(--secondary-blue); /* Secondary blue for feature titles */
+            font-size: 1.6em; /* Larger title */
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .feature-item p {
+            font-size: 1em;
+            line-height: 1.6;
+            margin-bottom: 20px; /* Space before button */
+            color: var(--medium-text);
+        }
+
+        .feature-item a {
+            display: inline-block;
+            background-color: var(--primary-green); /* Primary green for feature action buttons */
+            color: var(--pure-white);
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px; /* Bubble-like button */
+            font-size: 0.95em;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 8px rgba(46, 204, 113, 0.3);
+        }
+
+        .feature-item a:hover {
+            background-color: #27AE60; /* Darker green on hover */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(46, 204, 113, 0.5);
+        }
+
+        /* --- Footer Styling --- */
+        footer {
+            background-color: var(--header-dark);
+            color: var(--pure-white);
+            text-align: center;
+            padding: 1.5em 0;
+            width: 100%;
+            margin-top: 60px; /* Space above footer */
+        }
+
+        .motivational-message {
+            margin-top: 15px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95em;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            header .container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            header h1 {
+                margin-bottom: 15px;
+                font-size: 2em;
+            }
+            header input[type="search"] {
+                width: 100%;
+                margin-bottom: 15px;
+            }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                width: 100%;
+            }
+            nav ul li {
+                margin: 5px 10px;
+            }
+            .hero h2 {
+                font-size: 3em;
+            }
+            .hero p {
+                font-size: 1.2em;
+            }
+            h2 {
+                font-size: 2em;
+            }
+            .feature-list {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            header h1 {
+                font-size: 1.8em;
+            }
+            nav ul li a {
+                padding: 6px 12px;
+                font-size: 0.9em;
+            }
+            .hero {
+                padding: 60px 20px;
+            }
+            .hero h2 {
+                font-size: 2.5em;
+            }
+            .hero p {
+                font-size: 1em;
+            }
+            .hero .button {
+                padding: 15px 30px;
+                font-size: 1em;
+            }
+            h2 {
+                font-size: 1.8em;
+                margin-bottom: 20px;
+            }
+            .features {
+                padding: 20px;
+            }
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+            .feature-item {
+                padding: 20px;
+            }
+            .feature-item h3 {
+                font-size: 1.4em;
+            }
+            .feature-item p {
+                font-size: 0.9em;
+            }
+            .feature-item a {
+                padding: 8px 15px;
+                font-size: 0.85em;
+            }
+            footer {
+                padding: 1em 0;
+            }
+        }
+
+        /* --- Accessibility --- */
+        a:focus,
+        button:focus,
+        input:focus,
+        textarea:focus {
+            outline: 3px solid var(--accent-orange);
+            outline-offset: 3px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Coding for Beginners at Rosebank College</h1>
+            <input type="search" placeholder="Search...">
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="lecture-slides.html">Lecture Slides</a></li>
+                    <li><a href="video-tutorials.html">Video Tutorials</a></li>
+                    <li><a href="discussion-forum.html">Discussion Forum</a></li>
+                    <li><a href="resource-links.html">Resource Links</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h2>Welcome to Coding for Beginners!</h2>
+            <p>Your comprehensive platform to learn *HTML, CSS, JavaScript, Python, and **Java*.</p>
+            <p>Get started today and unlock the world of programming with interactive lessons and a supportive community!</p>
+            <a href="coding-exercises.html" class="button">Start Your Coding Journey</a>
+        </section>
+
+        <section class="features">
+            <h2>Explore Our Core Learning Features</h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <h3>Downloadable Lecture Slides</h3>
+                    <p>Access high-quality, printable lecture slides for all core programming languages, perfect for revision and offline study.</p>
+                    <a href="lecture-slides.html">View Slides</a>
+                </div>
+                <div class="feature-item">
+                    <h3>Engaging Video Tutorials</h3>
+                    <p>Learn visually at your own pace with our comprehensive, step-by-step video lessons covering key coding concepts.</p>
+                    <a href="video-tutorials.html">Watch Videos</a>
+                </div>
+                <div class="feature-item">
+                    <h3>Interactive Coding Exercises</h3>
+                    <p>Practice what you learn with hands-on coding challenges and receive immediate feedback to improve your skills.</p>
+                    <a href="coding-exercises.html">Try Exercises</a>
+                </div>
+                <div class="feature-item">
+                    <h3>Vibrant Community Forum</h3>
+                    <p>Connect with fellow learners, ask questions, share your progress, and get support from a passionate coding community.</p>
+                    <a href="discussion-forum.html">Join Forum</a>
+                </div>
+                <div class="feature-item">
+                    <h3>Curated Resource Links</h3>
+                    <p>Discover a wealth of external learning materials, documentation, and tools hand-picked to enhance your coding knowledge.</p>
+                    <a href="resource-links.html">Discover Resources</a>
+                </div>
+                <div class="feature-item">
+                    <h3>Progress Tracking & Badges</h3>
+                    <p>Monitor your learning journey, track completed lessons, and earn badges as you master new coding skills.</p>
+                    <a href="#">Track Progress</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Rosebank College - Coding for Beginners. All rights reserved.</p>
+            <div class="motivational-message"></div>
+        </div>
+    </footer>
+
+    <script>
+        const motivationalMessageElement = document.querySelector('.motivational-message');
+        if (motivationalMessageElement) {
+            const motivationalMessages = [
+                "Every expert was once a beginner. Keep coding!",
+                "The only way to learn to program is by doing it. Practice daily!",
+                "Don't be afraid to make mistakes; they're your best teachers.",
+                "Coding is the language of the future. You're learning a superpower!",
+                "Persistence is key. Keep pushing past challenges, and you'll succeed."
+            ];
+
+            const randomIndex = Math.floor(Math.random() * motivationalMessages.length);
+            motivationalMessageElement.textContent = motivationalMessages[randomIndex];
+        }
+    </script>
+</body>
+</html>
